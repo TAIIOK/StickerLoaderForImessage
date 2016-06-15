@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11129.15" systemVersion="16A201w" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ObA-dk-sSI">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11103.10"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Messages View Controller-->
+        <scene sceneID="7MM-of-jgj">
+            <objects>
+                <viewController id="ObA-dk-sSI" customClass="MessagesViewController" customModule="MessagesExtension" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qkL-Od-lgU"/>
+                        <viewControllerLayoutGuide type="bottom" id="n38-gi-rB5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zMn-AG-sqS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="528"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ndQ-oN-jIr">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="103" id="FUp-rr-jxV"/>
+                                    <constraint firstAttribute="height" constant="30" id="FkB-Eg-6om"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="81" id="eN2-M3-nvB"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="gJc-BK-Ehd"/>
+                                </constraints>
+                                <state key="normal" title="load Stickers"/>
+                                <connections>
+                                    <action selector="testingfunction:" destination="ObA-dk-sSI" eventType="touchUpInside" id="2ow-hl-LAJ"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello World" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d1e-fi-ked">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="65" id="fob-Oz-tVM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="ndQ-oN-jIr" secondAttribute="trailing" constant="84" id="Qcs-98-14F"/>
+                            <constraint firstItem="n38-gi-rB5" firstAttribute="top" secondItem="ndQ-oN-jIr" secondAttribute="bottom" constant="130" id="Y1n-vR-WPd"/>
+                            <constraint firstItem="d1e-fi-ked" firstAttribute="centerX" secondItem="ndQ-oN-jIr" secondAttribute="centerX" id="Y9v-aj-bY4"/>
+                            <constraint firstItem="ndQ-oN-jIr" firstAttribute="top" secondItem="d1e-fi-ked" secondAttribute="bottom" constant="20" id="iL3-hd-NAu"/>
+                        </constraints>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="528"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X47-rx-isc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="32" y="10.794602698650676"/>
+        </scene>
+        <!--StickerBrowserViewController-->
+        <scene sceneID="gvM-ev-hFr">
+            <objects>
+                <viewController restorationIdentifier="StickerBrowserViewController" storyboardIdentifier="StickerBrowserViewController" title="StickerBrowserViewController" id="Sib-Qj-ClC" customClass="StickerBrowserViewController" customModule="MessagesExtension" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="f30-tA-9uF"/>
+                        <viewControllerLayoutGuide type="bottom" id="6JB-5T-aqs"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="NiE-VN-kbO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WoT-Mq-rTj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="676" y="74"/>
+        </scene>
+    </scenes>
+</document>
