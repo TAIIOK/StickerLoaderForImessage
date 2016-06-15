@@ -1,5 +1,5 @@
-# StickerLoader
-Sticker loader imessage 
+# Sticker Loader For Imessage
+Sticker Loader For Imessage
 
 Functions :
 
@@ -10,4 +10,5 @@ To Do :
 
 - Working with Files
 - File storage
+- mass creating stickers 
 
