@@ -27,7 +27,7 @@ class StickerBrowserViewController: MSStickerBrowserViewController {
         
         createSticker(name: "yaoming")
         let url = URL(string: "https://pp.vk.me/c616730/v616730757/fea/Oq5FXiHPi0Y.jpg")
-        LoadStickerFromInternet(url: url!)
+        LoadSticker(url: url!)
         
     
     }
@@ -42,12 +42,7 @@ class StickerBrowserViewController: MSStickerBrowserViewController {
                 {
                     let filePath = try paths[0].appendingPathComponent("filename.jpg")
                     Url = filePath
-                }
-                catch {
-                    fatalError("\(error)")
-                }
-                
-                do {
+
                     try  data.write(to: Url)
                 }
                 catch {
