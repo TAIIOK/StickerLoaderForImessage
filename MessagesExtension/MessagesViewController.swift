@@ -1,8 +1,8 @@
 //
 //  MessagesViewController.swift
-//  StickerLoader
+//  MessagesExtension
 //
-//  Created by Roman Efimov on 14.06.16.
+//  Created by Roman Efimov on 21.06.16.
 //  Copyright © 2016 Roman Efimov. All rights reserved.
 //
 
@@ -11,21 +11,18 @@ import Messages
 
 class MessagesViewController: MSMessagesAppViewController {
     
-    @IBOutlet weak var imageViewTest: UIImageView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
         // Do any additional setup after loading the view.
     }
-    @IBAction func testingfunction(_ sender: AnyObject) {
+    
+    @IBAction func OpenStickerBrowser(_ sender: AnyObject) {
         let storyBoard : UIStoryboard = UIStoryboard(name: "MainInterface", bundle:nil)
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "StickerBrowserViewController") as! StickerBrowserViewController
         self.present(nextViewController, animated:true, completion:nil)
         
-        }
-
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -58,9 +55,7 @@ class MessagesViewController: MSMessagesAppViewController {
     }
     
     override func didStartSending(_ message: MSMessage, conversation: MSConversation) {
-        
         // Called when the user taps the send button.
-        
     }
     
     override func didCancelSending(_ message: MSMessage, conversation: MSConversation) {

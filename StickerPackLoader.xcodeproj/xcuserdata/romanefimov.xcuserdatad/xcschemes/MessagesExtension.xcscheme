@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A0A034A11D107EF200C9B2B3"
+               BlueprintIdentifier = "A0A792981D1987B3003D5E1B"
                BuildableName = "MessagesExtension.appex"
                BlueprintName = "MessagesExtension"
-               ReferencedContainer = "container:StickerLoader.xcodeproj">
+               ReferencedContainer = "container:StickerPackLoader.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -28,10 +28,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A0A034971D107EF200C9B2B3"
-               BuildableName = "StickerLoader.app"
-               BlueprintName = "StickerLoader"
-               ReferencedContainer = "container:StickerLoader.xcodeproj">
+               BlueprintIdentifier = "A0A7928E1D1987B2003D5E1B"
+               BuildableName = "StickerPackLoader.app"
+               BlueprintName = "StickerPackLoader"
+               ReferencedContainer = "container:StickerPackLoader.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -46,10 +46,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A0A034A11D107EF200C9B2B3"
+            BlueprintIdentifier = "A0A792981D1987B3003D5E1B"
             BuildableName = "MessagesExtension.appex"
             BlueprintName = "MessagesExtension"
-            ReferencedContainer = "container:StickerLoader.xcodeproj">
+            ReferencedContainer = "container:StickerPackLoader.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -66,20 +66,16 @@
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES"
       launchAutomaticallySubstyle = "2">
-      <RemoteRunnable
-         runnableDebuggingMode = "1"
-         BundleIdentifier = "com.apple.MobileSMS"
-         RemotePath = "/Applications/MobileSMS.app">
-      </RemoteRunnable>
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A0A034971D107EF200C9B2B3"
-            BuildableName = "StickerLoader.app"
-            BlueprintName = "StickerLoader"
-            ReferencedContainer = "container:StickerLoader.xcodeproj">
+            BlueprintIdentifier = "A0A7928E1D1987B2003D5E1B"
+            BuildableName = "StickerPackLoader.app"
+            BlueprintName = "StickerPackLoader"
+            ReferencedContainer = "container:StickerPackLoader.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -94,10 +90,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A0A034971D107EF200C9B2B3"
-            BuildableName = "StickerLoader.app"
-            BlueprintName = "StickerLoader"
-            ReferencedContainer = "container:StickerLoader.xcodeproj">
+            BlueprintIdentifier = "A0A7928E1D1987B2003D5E1B"
+            BuildableName = "StickerPackLoader.app"
+            BlueprintName = "StickerPackLoader"
+            ReferencedContainer = "container:StickerPackLoader.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
