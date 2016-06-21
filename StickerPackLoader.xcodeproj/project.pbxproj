@@ -421,6 +421,7 @@
 				A0A792AD1D1987B3003D5E1B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A0A792AF1D1987B3003D5E1B /* Build configuration list for PBXNativeTarget "StickerPackLoader" */ = {
 			isa = XCConfigurationList;
@@ -429,6 +430,7 @@
 				A0A792B11D1987B3003D5E1B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
