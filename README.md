@@ -9,6 +9,7 @@
 
 # JsonStruct :
 
+```sh
 {"StickerPacks":[ 
 
     {
@@ -18,7 +19,7 @@
     }
     ]
 }
-
+```
 # To Do :
 
 - Working with Files
