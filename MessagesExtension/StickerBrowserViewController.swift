@@ -14,7 +14,7 @@
  {
  "name": "test",
  "count": 1,
- "links": ["https://pp.vk.me/c606621/v606621505/7af7/dZnzJQLMFVs.jpg"]
+ "link": ["https://pp.vk.me/c606621/v606621505/7af7/"]
  }
  ]
  }
@@ -39,12 +39,12 @@ class StickerPack{
     
     var  name :String = ""
     var  count : Int = 0
-    var  links :[String] = []
+    var  link :String = ""
     
-    init(name:String, count:Int, links: [String]) {
+    init(name:String, count:Int, link: String) {
         self.name = name
         self.count = count
-        self.links = links
+        self.link = link
     }
     
 };
@@ -153,7 +153,7 @@ class StickerBrowserViewController: MSStickerBrowserViewController {
                         let name = i.value(forKey: "name")
                         
                         if let d = name {
-                            StikerPacks.append(StickerPack(name: d as! String, count: i.value(forKey: "count") as! Int , links: i.value(forKey: "links") as! [String]))
+                            StikerPacks.append(StickerPack(name: d as! String, count: i.value(forKey: "count") as! Int , link: i.value(forKey: "link") as! String))
                         }
                     }
                 }
