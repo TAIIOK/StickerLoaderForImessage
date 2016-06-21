@@ -4,8 +4,9 @@
 # Functions :
 
 - createSticker(name: String) -  load sticker from project 
-- LoadSticker(url : URL ) - load image from internet save it and create sticker
-- LoadStickerListFromJson(url : URL)  - load Json file with Stiker Packs
+- LoadSticker(url : URL , name : String ) - load image from internet save it and create sticker
+- LoadStickerListFromJson(url : URL)  - load Json file  with Sticker Packs and parse it 
+- addStickersFromJson() - create stickers from Json
 
 
    
@@ -18,7 +19,7 @@
     {
     "name": "",
     "count": 0,
-    "links": [""]
+    "link": [""]
     }
     ]
 }
@@ -27,5 +28,5 @@
 
 - Working with Files
 - File storage
-- mass creating stickers 
+
 
