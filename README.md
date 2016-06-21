@@ -1,15 +1,16 @@
 # Sticker Loader For Imessage
-Sticker Loader For Imessage
 
-Functions :
+
+# Functions :
 
 - createSticker(name: String)  // load sticker from project
 - LoadSticker(url : URL ) // load image from internet save it and create sticker
 - LoadStickerListFromJson(url : URL) // load Json file with Stiker Packs
 
-JsonStruct :
+# JsonStruct :
 
-{"StickerPacks":[
+{"StickerPacks":[ 
+
     {
     "name": "",
     "count": 0,
@@ -18,7 +19,7 @@ JsonStruct :
     ]
 }
 
-To Do :
+# To Do :
 
 - Working with Files
 - File storage
