@@ -66,20 +66,12 @@ class StickerBrowserViewController: MSStickerBrowserViewController {
         super.viewDidLoad()
         
         createSticker(name: "yaoming")
-        LoadSticker(url: URL(string: "https://pp.vk.me/c606621/v606621505/7af7/dZnzJQLMFVs.jpg")!)
-        
-        let bundle = Bundle.main()
-        guard let placeholderURL = bundle.urlForResource("document", withExtension: "json") else {
-            fatalError("Unable to find placeholder  image")
-        }
-        
-        LoadStickerListFromJson(url : placeholderURL)
-    
+
+        LoadStickerListFromJson(url : URL(string: "https://spl.tophope.ru/document.json")!)
+        addStickersFromJson()
     }
     
-
-    
-    func LoadSticker(url : URL )
+    func LoadSticker(url : URL , name : String )
     {
             do {
                 let data = try Data(contentsOf: url)
@@ -88,7 +80,7 @@ class StickerBrowserViewController: MSStickerBrowserViewController {
                 var Url : URL
                 do
                 {
-                    let filePath = try paths[0].appendingPathComponent("filename.jpg")
+                    let filePath = try paths[0].appendingPathComponent("\(name).jpg")
                     Url = filePath
                     
                     
@@ -104,7 +96,7 @@ class StickerBrowserViewController: MSStickerBrowserViewController {
                     do {
                         
                         
-                        let description = NSLocalizedString("filename", comment: "")
+                        let description = NSLocalizedString("\(name)", comment: "")
                         return try MSSticker(contentsOfFileURL: Url, localizedDescription: description)
                     }
                     catch {
@@ -166,7 +158,19 @@ class StickerBrowserViewController: MSStickerBrowserViewController {
         
         print("its works")
         print(StikerPacks.count)
+        
+        addStickersFromJson()
     
+    }
+    
+    func addStickersFromJson()
+    {
+        for i in StikerPacks
+        {
+            for q in 0...i.count{
+                LoadSticker(url : URL(string: i.link+"\(q+1).png" )! , name: i.name+".\(q+1)")
+            }
+        }
     }
     
     override func numberOfStickers(in stickerBrowserView: MSStickerBrowserView) -> Int {
