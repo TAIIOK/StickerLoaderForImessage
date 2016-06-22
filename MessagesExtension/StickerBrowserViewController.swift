@@ -65,14 +65,52 @@ class StickerBrowserViewController: MSStickerBrowserViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        createSticker(name: "yaoming")
-        LoadStickerListFromJson(url : URL(string: "https://spl.tophope.ru/document.json")!)
-        addStickersFromJson()
+        //createLoacalSticker(name: "yaoming")
+        
+        //LoadStickerFromMemmory(name: "test.1" , directory : "test")
+        
+       // LoadStickerListFromJson(url : URL(string: "https://spl.tophope.ru/document.json")!)
+      
         
     }
     
-    func LoadSticker(url : URL , name : String )
+    func LoadStickerFromMemmory(name: String , directory: String)
     {
+        var Url : URL
+        do {
+            let bundle = Bundle.main()
+            let paths = FileManager.default().urlsForDirectory(.documentDirectory, inDomains: .userDomainMask)
+            
+            do
+            {
+                let filePath = try paths[0].appendingPathComponent("\(directory)/\(name).png")
+                Url = filePath
+            }
+            catch {fatalError(" \(error)") }
+        }
+        catch { fatalError(" \(error)") }
+        let sticker: MSSticker = {
+            
+            do {
+                
+                
+                let description = NSLocalizedString("\(name)", comment: "")
+                return try MSSticker(contentsOfFileURL: Url, localizedDescription: description)
+            }
+            catch {
+                fatalError(" \(error)")
+            }
+        }()
+        
+        self.stickers.append(sticker)
+        
+    }
+
+
+    
+    func LoadSticker(url : URL , name : String , directory : String )
+    {
+
             do {
                 let data = try Data(contentsOf: url)
                 let bundle = Bundle.main()
@@ -80,11 +118,19 @@ class StickerBrowserViewController: MSStickerBrowserViewController {
                 var Url : URL
                 do
                 {
-                    let filePath = try paths[0].appendingPathComponent("\(name).jpg")
+                    let dataPath = try paths[0].appendingPathComponent("\(directory)")
+                    do{
+                     try FileManager.default().createDirectory(at: dataPath, withIntermediateDirectories: false, attributes: nil)
+                    }
+                    catch let error as NSError { print(error.localizedDescription)}
+                    let filePath = try paths[0].appendingPathComponent("\(directory)/\(name).png")
+                    
+                    
                     Url = filePath
                     
+                   
                     
-                    try  UIImagePNGRepresentation((UIImage(data: data)?.scaledToSize(size: CGSize(width: 442, height: 556)))!)?.write(to: Url)
+                    try  UIImagePNGRepresentation((UIImage(data: data)?.scaledToSize(size: CGSize(width: 206, height: 206)))!)?.write(to: Url)
                 }
                 catch {
                     fatalError("\(error)")
@@ -115,12 +161,13 @@ class StickerBrowserViewController: MSStickerBrowserViewController {
     }
     
 
-    func createSticker(name: String) {
+    func createLocalSticker(name: String) {
         let sticker: MSSticker = {
             let bundle = Bundle.main()
             guard let placeholderURL = bundle.urlForResource(name, withExtension: "png") else {
                 fatalError("Unable to find placeholder  image")
             }
+            
             do {
                 let description = NSLocalizedString(name, comment: "")
                 return try MSSticker(contentsOfFileURL: placeholderURL, localizedDescription: description)
@@ -168,7 +215,7 @@ class StickerBrowserViewController: MSStickerBrowserViewController {
         for i in StikerPacks
         {
             for q in 0...i.count{
-                LoadSticker(url : URL(string: i.link+"\(q+1).png" )! , name: i.name+".\(q+1)")
+                LoadSticker(url : URL(string: i.link+"\(q+1).png" )! , name: i.name+".\(q+1)" , directory: i.name)
             }
         }
     }
