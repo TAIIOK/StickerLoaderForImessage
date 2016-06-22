@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11103.10"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -24,25 +25,39 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ybm-rE-yAU">
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="show your stickers"/>
                                 <connections>
                                     <action selector="OpenStickerBrowser:" destination="ObA-dk-sSI" eventType="touchUpInside" id="s1j-Zl-RXr"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Td3-zK-qL8">
+                                <state key="normal" title="add new stickers"/>
+                            </button>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tpA-Ax-5mO"/>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="tpA-Ax-5mO" firstAttribute="top" secondItem="zMn-AG-sqS" secondAttribute="top" constant="378" id="19D-b8-0o1"/>
                             <constraint firstItem="ybm-rE-yAU" firstAttribute="centerX" secondItem="d1e-fi-ked" secondAttribute="centerX" id="9kn-9o-lB5"/>
-                            <constraint firstAttribute="centerY" secondItem="d1e-fi-ked" secondAttribute="centerY" id="H0s-hz-dDP"/>
-                            <constraint firstItem="ybm-rE-yAU" firstAttribute="top" secondItem="d1e-fi-ked" secondAttribute="bottom" constant="36" id="PRc-RU-ky7"/>
+                            <constraint firstAttribute="centerY" secondItem="d1e-fi-ked" secondAttribute="centerY" constant="69.5" id="H0s-hz-dDP"/>
+                            <constraint firstItem="n38-gi-rB5" firstAttribute="top" secondItem="tpA-Ax-5mO" secondAttribute="bottom" constant="20" id="NIg-5d-SAy"/>
+                            <constraint firstItem="Td3-zK-qL8" firstAttribute="centerX" secondItem="ybm-rE-yAU" secondAttribute="centerX" id="P3d-UD-kXM"/>
+                            <constraint firstItem="ybm-rE-yAU" firstAttribute="top" secondItem="d1e-fi-ked" secondAttribute="bottom" constant="20" id="PRc-RU-ky7"/>
+                            <constraint firstItem="Td3-zK-qL8" firstAttribute="top" secondItem="ybm-rE-yAU" secondAttribute="bottom" constant="21" id="jhV-eP-Wh3"/>
+                            <constraint firstItem="tpA-Ax-5mO" firstAttribute="leading" secondItem="zMn-AG-sqS" secondAttribute="leadingMargin" constant="-16" id="mtP-nn-JTP"/>
+                            <constraint firstItem="tpA-Ax-5mO" firstAttribute="centerX" secondItem="ybm-rE-yAU" secondAttribute="centerX" id="r3o-4z-JLU"/>
                             <constraint firstAttribute="centerX" secondItem="d1e-fi-ked" secondAttribute="centerX" id="wFy-hW-Bib"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="528"/>
+                    <connections>
+                        <outlet property="StickerScroll" destination="tpA-Ax-5mO" id="s9p-DB-yvv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X47-rx-isc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="33.600000000000001" y="37.781109445277366"/>
         </scene>
         <!--StickerBrowserViewController-->
         <scene sceneID="5Aq-Vg-Myy">

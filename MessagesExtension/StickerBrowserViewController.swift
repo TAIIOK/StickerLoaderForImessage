@@ -14,7 +14,7 @@
  {
  "name": "test",
  "count": 1,
- "link": ["https://pp.vk.me/c606621/v606621505/7af7/"]
+ "link": "https://pp.vk.me/c606621/v606621505/7af7/"
  }
  ]
  }
@@ -66,9 +66,9 @@ class StickerBrowserViewController: MSStickerBrowserViewController {
         super.viewDidLoad()
         
         createSticker(name: "yaoming")
-
         LoadStickerListFromJson(url : URL(string: "https://spl.tophope.ru/document.json")!)
         addStickersFromJson()
+        
     }
     
     func LoadSticker(url : URL , name : String )

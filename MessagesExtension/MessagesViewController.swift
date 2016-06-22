@@ -9,13 +9,42 @@
 import UIKit
 import Messages
 
-class MessagesViewController: MSMessagesAppViewController {
+class MessagesViewController: MSMessagesAppViewController , UIScrollViewDelegate {
+    
+    @IBOutlet weak var StickerScroll: UIScrollView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+       
+        StickerScroll.delegate = self
+        StickerScroll.isUserInteractionEnabled = true
+        StickerScroll.isScrollEnabled = true
+        
+        setupStickerScroll()
+        
+        
     }
     
+
+    func setupStickerScroll(){
+    
+        StickerScroll.contentSize = CGSize(width: 1000, height: 98)
+        var x = CGFloat(integerLiteral: 0)
+        for q in 0...10{
+        
+        let image = UIImageView(frame: CGRect(x: 0, y: 0 , width: 100, height: 98))
+        var label  =    UILabel(frame: CGRect(x: 25, y: 100 , width: 100, height: 15))
+            
+        image.image = UIImage(named: "yaoming.png") // image of sticker pack
+        label.text = "text" // name of sticker pack
+            
+        image.frame.origin.x = x
+        label.frame.origin.x = label.frame.origin.x + x
+        StickerScroll.addSubview(label)
+        StickerScroll.addSubview(image)
+            x += 100
+        }
+    }
     @IBAction func OpenStickerBrowser(_ sender: AnyObject) {
         let storyBoard : UIStoryboard = UIStoryboard(name: "MainInterface", bundle:nil)
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "StickerBrowserViewController") as! StickerBrowserViewController
