@@ -3,9 +3,10 @@
 
 # Functions :
 
-- createSticker(name: String) -  load sticker from project 
-- LoadSticker(url : URL , name : String ) - load image from internet save it and create sticker
+- createLocalSticker(name: String) -  load sticker from project 
+- LoadSticker(url : URL , name : String , directory : String ) - load image from internet save it and create sticker
 - LoadStickerListFromJson(url : URL)  - load Json file  with Sticker Packs and parse it 
+- LoadStickerFromMemmory(name: String , directory: String) - load images from documents/directory
 - addStickersFromJson() - create stickers from Json
 
 
@@ -26,7 +27,8 @@
 ```
 # To Do :
 
-- Working with Files
-- File storage
+- Save path of downloaded Stickers
+- Add sticker catalog 
+- Add sticker manager
 
 
