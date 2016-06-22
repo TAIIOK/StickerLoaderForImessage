@@ -69,6 +69,8 @@ class StickerBrowserViewController: MSStickerBrowserViewController {
         
         //LoadStickerFromDocuments(name: "test.1" , directory : "test")
         
+        //removeDirectory(directory: "test")
+        
         LoadStickerListFromJson(url : URL(string: "https://spl.tophope.ru/document.json")!)
       
         
@@ -107,7 +109,22 @@ class StickerBrowserViewController: MSStickerBrowserViewController {
     }
 
 
+    func removeDirectory(directory : String )
+    {
+        let paths = FileManager.default().urlsForDirectory(.documentDirectory, inDomains: .userDomainMask)
+        do
+        {
+            let dataPath = try paths[0].appendingPathComponent("\(directory)")
+            do{
+                try FileManager.default().removeItem(at: dataPath)
+                //try FileManager.default().createDirectory(at: dataPath, withIntermediateDirectories: false, attributes: nil)
+            }
+            catch let error as NSError { print(error.localizedDescription)}
+        }
+        catch let error as NSError { print(error.localizedDescription)}
+     
     
+    }
     func LoadSticker(url : URL , name : String , directory : String )
     {
 
@@ -120,6 +137,7 @@ class StickerBrowserViewController: MSStickerBrowserViewController {
                 {
                     let dataPath = try paths[0].appendingPathComponent("\(directory)")
                     do{
+                        
                      try FileManager.default().createDirectory(at: dataPath, withIntermediateDirectories: false, attributes: nil)
                     }
                     catch let error as NSError { print(error.localizedDescription)}
