@@ -67,14 +67,14 @@ class StickerBrowserViewController: MSStickerBrowserViewController {
         
         //createLoacalSticker(name: "yaoming")
         
-        //LoadStickerFromMemmory(name: "test.1" , directory : "test")
+        //LoadStickerFromDocuments(name: "test.1" , directory : "test")
         
-       // LoadStickerListFromJson(url : URL(string: "https://spl.tophope.ru/document.json")!)
+        LoadStickerListFromJson(url : URL(string: "https://spl.tophope.ru/document.json")!)
       
         
     }
     
-    func LoadStickerFromMemmory(name: String , directory: String)
+    func LoadStickerFromDocuments(name: String , directory: String)
     {
         var Url : URL
         do {
