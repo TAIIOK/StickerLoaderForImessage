@@ -19,6 +19,7 @@
 		A0A792B81D198C07003D5E1B /* yaoming.png in Resources */ = {isa = PBXBuildFile; fileRef = A0A792B61D198C07003D5E1B /* yaoming.png */; };
 		A0A792BA1D1998FC003D5E1B /* document.json in Resources */ = {isa = PBXBuildFile; fileRef = A0A792B91D1998FC003D5E1B /* document.json */; };
 		A0A792BB1D1998FC003D5E1B /* document.json in Resources */ = {isa = PBXBuildFile; fileRef = A0A792B91D1998FC003D5E1B /* document.json */; };
+		A0F2520D1D1C143200853E64 /* StickerBrowserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F2520C1D1C143200853E64 /* StickerBrowserView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		A0A792B41D198A42003D5E1B /* StickerBrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickerBrowserViewController.swift; sourceTree = "<group>"; };
 		A0A792B61D198C07003D5E1B /* yaoming.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = yaoming.png; path = Images/yaoming.png; sourceTree = "<group>"; };
 		A0A792B91D1998FC003D5E1B /* document.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = document.json; sourceTree = "<group>"; };
+		A0F2520C1D1C143200853E64 /* StickerBrowserView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickerBrowserView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 				A0A792A61D1987B3003D5E1B /* Assets.xcassets */,
 				A0A792B41D198A42003D5E1B /* StickerBrowserViewController.swift */,
 				A0A792A81D1987B3003D5E1B /* Info.plist */,
+				A0F2520C1D1C143200853E64 /* StickerBrowserView.swift */,
 			);
 			path = MessagesExtension;
 			sourceTree = "<group>";
@@ -236,6 +239,7 @@
 			files = (
 				A0A792A21D1987B3003D5E1B /* MessagesViewController.swift in Sources */,
 				A0A792B51D198A42003D5E1B /* StickerBrowserViewController.swift in Sources */,
+				A0F2520D1D1C143200853E64 /* StickerBrowserView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

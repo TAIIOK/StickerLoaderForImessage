@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11103.10"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -19,48 +18,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="528"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Hello World" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d1e-fi-ked">
-                                <frame key="frameInset" minX="116" minY="185" width="89" height="20"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ybm-rE-yAU">
-                                <frame key="frameInset" minX="96" minY="225" width="128" height="30"/>
-                                <state key="normal" title="show your stickers"/>
-                                <connections>
-                                    <action selector="OpenStickerBrowser:" destination="ObA-dk-sSI" eventType="touchUpInside" id="s1j-Zl-RXr"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Td3-zK-qL8">
-                                <frame key="frameInset" minX="102" minY="276" width="116" height="30"/>
-                                <state key="normal" title="add new stickers"/>
-                            </button>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tpA-Ax-5mO"/>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xzq-lG-rv0" customClass="MSStickerBrowserView">
+                                <frame key="frameInset" width="320" height="26"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="tpA-Ax-5mO" firstAttribute="top" secondItem="zMn-AG-sqS" secondAttribute="top" constant="378" id="19D-b8-0o1"/>
-                            <constraint firstItem="ybm-rE-yAU" firstAttribute="centerX" secondItem="d1e-fi-ked" secondAttribute="centerX" id="9kn-9o-lB5"/>
-                            <constraint firstAttribute="centerY" secondItem="d1e-fi-ked" secondAttribute="centerY" constant="69.5" id="H0s-hz-dDP"/>
-                            <constraint firstItem="n38-gi-rB5" firstAttribute="top" secondItem="tpA-Ax-5mO" secondAttribute="bottom" constant="20" id="NIg-5d-SAy"/>
-                            <constraint firstItem="Td3-zK-qL8" firstAttribute="centerX" secondItem="ybm-rE-yAU" secondAttribute="centerX" id="P3d-UD-kXM"/>
-                            <constraint firstItem="ybm-rE-yAU" firstAttribute="top" secondItem="d1e-fi-ked" secondAttribute="bottom" constant="20" id="PRc-RU-ky7"/>
-                            <constraint firstItem="Td3-zK-qL8" firstAttribute="top" secondItem="ybm-rE-yAU" secondAttribute="bottom" constant="21" id="jhV-eP-Wh3"/>
-                            <constraint firstItem="tpA-Ax-5mO" firstAttribute="leading" secondItem="zMn-AG-sqS" secondAttribute="leadingMargin" constant="-16" id="mtP-nn-JTP"/>
-                            <constraint firstItem="tpA-Ax-5mO" firstAttribute="centerX" secondItem="ybm-rE-yAU" secondAttribute="centerX" id="r3o-4z-JLU"/>
-                            <constraint firstAttribute="centerX" secondItem="d1e-fi-ked" secondAttribute="centerX" id="wFy-hW-Bib"/>
+                            <constraint firstItem="Xzq-lG-rv0" firstAttribute="top" secondItem="zMn-AG-sqS" secondAttribute="top" id="HJm-p4-d1e"/>
+                            <constraint firstItem="Xzq-lG-rv0" firstAttribute="leading" secondItem="zMn-AG-sqS" secondAttribute="leading" id="n9V-lc-289"/>
+                            <constraint firstAttribute="trailing" secondItem="Xzq-lG-rv0" secondAttribute="trailing" id="y9H-91-aCg"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="528"/>
                     <connections>
-                        <outlet property="StickerScroll" destination="tpA-Ax-5mO" id="s9p-DB-yvv"/>
+                        <outlet property="Browser" destination="Xzq-lG-rv0" id="7Qg-t8-icB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X47-rx-isc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="33.600000000000001" y="37.781109445277366"/>
+            <point key="canvasLocation" x="60.799999999999997" y="-76.46176911544228"/>
         </scene>
         <!--StickerBrowserViewController-->
         <scene sceneID="5Aq-Vg-Myy">
@@ -71,14 +49,46 @@
                         <viewControllerLayoutGuide type="bottom" id="QQj-0n-Rgc"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="AgL-VR-PQd">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="528"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="528"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nHo-hp-YxK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="739" y="8"/>
+            <point key="canvasLocation" x="61" y="465"/>
+        </scene>
+        <!--AddStickersView-->
+        <scene sceneID="FFM-TU-Ldu">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LYQ-nB-s9U" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController restorationIdentifier="AddStickersView" storyboardIdentifier="AddStickersView" title="AddStickersView" id="gCn-Ag-ARB" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="FYs-yU-PpA"/>
+                        <viewControllerLayoutGuide type="bottom" id="0Os-qR-YG7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZZE-e7-dVT">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="528"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RYh-GT-80h">
+                                <frame key="frameInset" minY="63" width="320" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </scrollView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TsF-hI-1fO">
+                                <frame key="frameInset" minY="271" width="320" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="528"/>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="756.79999999999995" y="-76.46176911544228"/>
         </scene>
     </scenes>
 </document>

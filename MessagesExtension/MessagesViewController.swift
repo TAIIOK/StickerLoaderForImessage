@@ -9,23 +9,37 @@
 import UIKit
 import Messages
 
-class MessagesViewController: MSMessagesAppViewController , UIScrollViewDelegate {
+class MessagesViewController: MSMessagesAppViewController , UIScrollViewDelegate , MSStickerBrowserViewDataSource  {
     
-    @IBOutlet weak var StickerScroll: UIScrollView!
+    var stickers = [MSSticker]()
     
+    var StikerPacks = [StickerPack]()
+    
+  //  @IBOutlet weak var StickerScroll: UIScrollView!
+
+    @IBOutlet weak var Browser: MSStickerBrowserView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
        
-        StickerScroll.delegate = self
-        StickerScroll.isUserInteractionEnabled = true
-        StickerScroll.isScrollEnabled = true
+ //       StickerScroll.delegate = self
+   //     StickerScroll.isUserInteractionEnabled = true
+     //   StickerScroll.isScrollEnabled = true
+
+        Browser.dataSource = self
         
-        setupStickerScroll()
+        //setupStickerScroll()
+
+        DispatchQueue.global(attributes: .qosUserInitiated).async {
+            self.LoadStickerListFromJson(url : URL(string: "https://spl.tophope.ru/document.json")!)
+            // Bounce back to the main thread to update the UI
+
+        }
         
         
     }
     
-
+    /*
     func setupStickerScroll(){
     
         StickerScroll.contentSize = CGSize(width: 1000, height: 98)
@@ -44,7 +58,7 @@ class MessagesViewController: MSMessagesAppViewController , UIScrollViewDelegate
         StickerScroll.addSubview(image)
             x += 100
         }
-    }
+    } */
     @IBAction func OpenStickerBrowser(_ sender: AnyObject) {
         let storyBoard : UIStoryboard = UIStoryboard(name: "MainInterface", bundle:nil)
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "StickerBrowserViewController") as! StickerBrowserViewController
@@ -55,6 +69,183 @@ class MessagesViewController: MSMessagesAppViewController , UIScrollViewDelegate
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+       func numberOfStickers(in stickerBrowserView: MSStickerBrowserView) -> Int {
+        return stickers.count
+    }
+    
+     func stickerBrowserView(_ stickerBrowserView: MSStickerBrowserView,
+                                     stickerAt index: Int) -> MSSticker {
+        return stickers[index]
+    }
+    
+    
+    func LoadStickerFromDocuments(name: String , directory: String)
+    {
+        var Url : URL
+        do {
+            let bundle = Bundle.main()
+            let paths = FileManager.default().urlsForDirectory(.documentDirectory, inDomains: .userDomainMask)
+            
+            do
+            {
+                let filePath = try paths[0].appendingPathComponent("\(directory)/\(name).png")
+                Url = filePath
+            }
+            catch {fatalError(" \(error)") }
+        }
+        catch { fatalError(" \(error)") }
+        let sticker: MSSticker = {
+            
+            do {
+                
+                
+                let description = NSLocalizedString("\(name)", comment: "")
+                return try MSSticker(contentsOfFileURL: Url, localizedDescription: description)
+            }
+            catch {
+                fatalError(" \(error)")
+            }
+        }()
+        
+        self.stickers.append(sticker)
+        
+    }
+    
+    
+    func removeDirectory(directory : String )
+    {
+        let paths = FileManager.default().urlsForDirectory(.documentDirectory, inDomains: .userDomainMask)
+        do
+        {
+            let dataPath = try paths[0].appendingPathComponent("\(directory)")
+            do{
+                try FileManager.default().removeItem(at: dataPath)
+                //try FileManager.default().createDirectory(at: dataPath, withIntermediateDirectories: false, attributes: nil)
+            }
+            catch let error as NSError { print(error.localizedDescription)}
+        }
+        catch let error as NSError { print(error.localizedDescription)}
+        
+        
+    }
+    
+    func LoadStickerListFromJson(url : URL)
+    {
+        do{
+            let jsonData =  try Data(contentsOf: url)
+            do {
+                let json = try JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
+                
+                if let Packs : [NSDictionary] = json["StickerPacks"] as? [NSDictionary] {
+                    for  i : NSDictionary in Packs {
+                        let name = i.value(forKey: "name")
+                        
+                        if let d = name {
+                            StikerPacks.append(StickerPack(name: d as! String, count: i.value(forKey: "count") as! Int , link: i.value(forKey: "link") as! String))
+                        }
+                    }
+                }
+            } catch let error as NSError {
+                print(error)
+            }
+            
+        }
+        catch {  fatalError(" \(error)")}
+        
+        print("its works")
+        print(StikerPacks.count)
+        
+        addStickersFromJson()
+        
+    }
+    
+    
+    func addStickersFromJson()
+    {
+        for i in StikerPacks
+        {
+            for q in 0...i.count{
+                LoadSticker(url : URL(string: i.link+"\(q+1).png" )! , name: i.name+".\(q+1)" , directory: i.name)
+                if(q == 1 || q%2 == 0)
+                {
+                    self.reloadInputViews()
+                    Browser.reloadData()
+                }
+            }
+        }
+    }
+    
+    func LoadSticker(url : URL , name : String , directory : String )
+    {
+        
+        do {
+            let data = try Data(contentsOf: url)
+            let bundle = Bundle.main()
+            let paths = FileManager.default().urlsForDirectory(.documentDirectory, inDomains: .userDomainMask)
+            var Url : URL
+            do
+            {
+                let dataPath = try paths[0].appendingPathComponent("\(directory)")
+                do{
+                    
+                    try FileManager.default().createDirectory(at: dataPath, withIntermediateDirectories: false, attributes: nil)
+                }
+                catch let error as NSError { print(error.localizedDescription)}
+                let filePath = try paths[0].appendingPathComponent("\(directory)/\(name).png")
+                
+                
+                Url = filePath
+                
+                
+                
+                try  UIImagePNGRepresentation((UIImage(data: data)?.scaledToSize(size: CGSize(width: 206, height: 206)))!)?.write(to: Url)
+            }
+            catch {
+                fatalError("\(error)")
+            }
+            
+            
+            let sticker: MSSticker = {
+                
+                do {
+                    
+                    
+                    let description = NSLocalizedString("\(name)", comment: "")
+                    return try MSSticker(contentsOfFileURL: Url, localizedDescription: description)
+                }
+                catch {
+                    fatalError(" \(error)")
+                }
+            }()
+            
+            self.stickers.append(sticker)
+            
+        }
+        catch {
+            fatalError("\(error)")
+        }
+        
+        
+    }
+    
+    
+    func createLocalSticker(name: String) {
+        let sticker: MSSticker = {
+            let bundle = Bundle.main()
+            guard let placeholderURL = bundle.urlForResource(name, withExtension: "png") else {
+                fatalError("Unable to find placeholder  image")
+            }
+            
+            do {
+                let description = NSLocalizedString(name, comment: "")
+                return try MSSticker(contentsOfFileURL: placeholderURL, localizedDescription: description)
+            }
+            catch {
+                fatalError("\(error)")
+            }
+        }()
+        stickers.append(sticker)
     }
     
     // MARK: - Conversation Handling
@@ -75,7 +266,7 @@ class MessagesViewController: MSMessagesAppViewController , UIScrollViewDelegate
         // and store enough state information to restore your extension to its current state
         // in case it is terminated later.
     }
-   
+    
     override func didReceive(_ message: MSMessage, conversation: MSConversation) {
         // Called when a message arrives that was generated by another instance of this
         // extension on a remote device.
@@ -89,20 +280,24 @@ class MessagesViewController: MSMessagesAppViewController , UIScrollViewDelegate
     
     override func didCancelSending(_ message: MSMessage, conversation: MSConversation) {
         // Called when the user deletes the message without sending it.
-    
+        
         // Use this to clean up state related to the deleted message.
     }
     
     override func willTransition(to presentationStyle: MSMessagesAppPresentationStyle) {
         // Called before the extension transitions to a new presentation style.
-    
+        
         // Use this method to prepare for the change in presentation style.
     }
     
     override func didTransition(to presentationStyle: MSMessagesAppPresentationStyle) {
         // Called after the extension transitions to a new presentation style.
-    
+        
         // Use this method to finalize any behaviors associated with the change in presentation style.
     }
+    
+
+
+    
 
 }
