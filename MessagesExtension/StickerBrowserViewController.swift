@@ -80,8 +80,8 @@ class StickerBrowserViewController: MSStickerBrowserViewController {
     {
         var Url : URL
         do {
-            let bundle = Bundle.main()
-            let paths = FileManager.default().urlsForDirectory(.documentDirectory, inDomains: .userDomainMask)
+           
+            let paths = FileManager.default.urlsForDirectory(.documentDirectory, inDomains: .userDomainMask)
             
             do
             {
@@ -90,7 +90,7 @@ class StickerBrowserViewController: MSStickerBrowserViewController {
             }
             catch {fatalError(" \(error)") }
         }
-        catch { fatalError(" \(error)") }
+    
         let sticker: MSSticker = {
             
             do {
@@ -111,12 +111,12 @@ class StickerBrowserViewController: MSStickerBrowserViewController {
 
     func removeDirectory(directory : String )
     {
-        let paths = FileManager.default().urlsForDirectory(.documentDirectory, inDomains: .userDomainMask)
+        let paths = FileManager.default.urlsForDirectory(.documentDirectory, inDomains: .userDomainMask)
         do
         {
             let dataPath = try paths[0].appendingPathComponent("\(directory)")
             do{
-                try FileManager.default().removeItem(at: dataPath)
+                try FileManager.default.removeItem(at: dataPath)
                 //try FileManager.default().createDirectory(at: dataPath, withIntermediateDirectories: false, attributes: nil)
             }
             catch let error as NSError { print(error.localizedDescription)}
@@ -130,15 +130,15 @@ class StickerBrowserViewController: MSStickerBrowserViewController {
 
             do {
                 let data = try Data(contentsOf: url)
-                let bundle = Bundle.main()
-                let paths = FileManager.default().urlsForDirectory(.documentDirectory, inDomains: .userDomainMask)
+                
+                let paths = FileManager.default.urlsForDirectory(.documentDirectory, inDomains: .userDomainMask)
                 var Url : URL
                 do
                 {
                     let dataPath = try paths[0].appendingPathComponent("\(directory)")
                     do{
                         
-                     try FileManager.default().createDirectory(at: dataPath, withIntermediateDirectories: false, attributes: nil)
+                     try FileManager.default.createDirectory(at: dataPath, withIntermediateDirectories: false, attributes: nil)
                     }
                     catch let error as NSError { print(error.localizedDescription)}
                     let filePath = try paths[0].appendingPathComponent("\(directory)/\(name).png")
@@ -181,7 +181,7 @@ class StickerBrowserViewController: MSStickerBrowserViewController {
 
     func createLocalSticker(name: String) {
         let sticker: MSSticker = {
-            let bundle = Bundle.main()
+            let bundle = Bundle.main
             guard let placeholderURL = bundle.urlForResource(name, withExtension: "png") else {
                 fatalError("Unable to find placeholder  image")
             }

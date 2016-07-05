@@ -9,9 +9,12 @@
 import UIKit
 import Messages
 
-class MessagesViewController: MSMessagesAppViewController , UIScrollViewDelegate , MSStickerBrowserViewDataSource  {
+class MessagesViewController: MSMessagesAppViewController , UIScrollViewDelegate , MSStickerBrowserViewDataSource   {
     
+
     var stickers = [MSSticker]()
+    
+
     
     var StikerPacks = [StickerPack]()
     
@@ -22,10 +25,13 @@ class MessagesViewController: MSMessagesAppViewController , UIScrollViewDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
        
+        
+        print(self.tabBarItem.accessibilityFrame)
  //       StickerScroll.delegate = self
    //     StickerScroll.isUserInteractionEnabled = true
      //   StickerScroll.isScrollEnabled = true
 
+        
         Browser.dataSource = self
         
         //setupStickerScroll()
@@ -39,6 +45,9 @@ class MessagesViewController: MSMessagesAppViewController , UIScrollViewDelegate
         
     }
     
+    
+    
+
     /*
     func setupStickerScroll(){
     
@@ -84,8 +93,8 @@ class MessagesViewController: MSMessagesAppViewController , UIScrollViewDelegate
     {
         var Url : URL
         do {
-            let bundle = Bundle.main()
-            let paths = FileManager.default().urlsForDirectory(.documentDirectory, inDomains: .userDomainMask)
+           
+            let paths = FileManager.default.urlsForDirectory(.documentDirectory, inDomains: .userDomainMask)
             
             do
             {
@@ -94,7 +103,6 @@ class MessagesViewController: MSMessagesAppViewController , UIScrollViewDelegate
             }
             catch {fatalError(" \(error)") }
         }
-        catch { fatalError(" \(error)") }
         let sticker: MSSticker = {
             
             do {
@@ -115,12 +123,12 @@ class MessagesViewController: MSMessagesAppViewController , UIScrollViewDelegate
     
     func removeDirectory(directory : String )
     {
-        let paths = FileManager.default().urlsForDirectory(.documentDirectory, inDomains: .userDomainMask)
+        let paths = FileManager.default.urlsForDirectory(.documentDirectory, inDomains: .userDomainMask)
         do
         {
             let dataPath = try paths[0].appendingPathComponent("\(directory)")
             do{
-                try FileManager.default().removeItem(at: dataPath)
+                try FileManager.default.removeItem(at: dataPath)
                 //try FileManager.default().createDirectory(at: dataPath, withIntermediateDirectories: false, attributes: nil)
             }
             catch let error as NSError { print(error.localizedDescription)}
@@ -181,15 +189,14 @@ class MessagesViewController: MSMessagesAppViewController , UIScrollViewDelegate
         
         do {
             let data = try Data(contentsOf: url)
-            let bundle = Bundle.main()
-            let paths = FileManager.default().urlsForDirectory(.documentDirectory, inDomains: .userDomainMask)
+            let paths = FileManager.default.urlsForDirectory(.documentDirectory, inDomains: .userDomainMask)
             var Url : URL
             do
             {
                 let dataPath = try paths[0].appendingPathComponent("\(directory)")
                 do{
                     
-                    try FileManager.default().createDirectory(at: dataPath, withIntermediateDirectories: false, attributes: nil)
+                    try FileManager.default.createDirectory(at: dataPath, withIntermediateDirectories: false, attributes: nil)
                 }
                 catch let error as NSError { print(error.localizedDescription)}
                 let filePath = try paths[0].appendingPathComponent("\(directory)/\(name).png")
@@ -232,7 +239,7 @@ class MessagesViewController: MSMessagesAppViewController , UIScrollViewDelegate
     
     func createLocalSticker(name: String) {
         let sticker: MSSticker = {
-            let bundle = Bundle.main()
+            let bundle = Bundle.main
             guard let placeholderURL = bundle.urlForResource(name, withExtension: "png") else {
                 fatalError("Unable to find placeholder  image")
             }

@@ -3,10 +3,11 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11103.10"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Messages View Controller-->
+        <!--Item-->
         <scene sceneID="7MM-of-jgj">
             <objects>
                 <viewController id="ObA-dk-sSI" customClass="MessagesViewController" customModule="MessagesExtension" customModuleProvider="target" sceneMemberID="viewController">
@@ -18,18 +19,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="528"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xzq-lG-rv0" customClass="MSStickerBrowserView">
-                                <frame key="frameInset" width="320" height="26"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xzq-lG-rv0" customClass="MSStickerBrowserView">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Xzq-lG-rv0" firstAttribute="top" secondItem="zMn-AG-sqS" secondAttribute="top" id="HJm-p4-d1e"/>
-                            <constraint firstItem="Xzq-lG-rv0" firstAttribute="leading" secondItem="zMn-AG-sqS" secondAttribute="leading" id="n9V-lc-289"/>
-                            <constraint firstAttribute="trailing" secondItem="Xzq-lG-rv0" secondAttribute="trailing" id="y9H-91-aCg"/>
+                            <constraint firstAttribute="trailing" secondItem="Xzq-lG-rv0" secondAttribute="trailing" id="IZJ-TN-pU6"/>
+                            <constraint firstAttribute="bottom" secondItem="Xzq-lG-rv0" secondAttribute="bottom" constant="104" id="PWU-o9-Grs"/>
+                            <constraint firstItem="Xzq-lG-rv0" firstAttribute="leading" secondItem="zMn-AG-sqS" secondAttribute="leading" id="fxC-ea-ILK"/>
+                            <constraint firstItem="Xzq-lG-rv0" firstAttribute="top" secondItem="zMn-AG-sqS" secondAttribute="top" id="rlo-oW-A7U"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="KcW-8P-s9j">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                    </tabBarItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="528"/>
                     <connections>
@@ -63,7 +68,6 @@
         <!--AddStickersView-->
         <scene sceneID="FFM-TU-Ldu">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="LYQ-nB-s9U" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController restorationIdentifier="AddStickersView" storyboardIdentifier="AddStickersView" title="AddStickersView" id="gCn-Ag-ARB" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FYs-yU-PpA"/>
@@ -73,20 +77,50 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="528"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RYh-GT-80h">
-                                <frame key="frameInset" minY="63" width="320" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </scrollView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TsF-hI-1fO">
-                                <frame key="frameInset" minY="271" width="320" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </scrollView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RYh-GT-80h"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TsF-hI-1fO"/>
+                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="49F-2x-4p5">
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <tabBarItem title="MyStickers" id="4GY-RU-7ft"/>
+                                    <tabBarItem title="Catalog" id="90X-7v-1gH"/>
+                                    <tabBarItem title="Edit" id="o9b-gj-wBU"/>
+                                </items>
+                            </tabBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Новые " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H1k-F4-Hup">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Популярные" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fWr-cM-1UC">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="49F-2x-4p5" firstAttribute="leading" secondItem="ZZE-e7-dVT" secondAttribute="leading" id="1Gm-GM-AzO"/>
+                            <constraint firstItem="RYh-GT-80h" firstAttribute="top" secondItem="FYs-yU-PpA" secondAttribute="bottom" constant="43" id="1Js-Br-NDn"/>
+                            <constraint firstAttribute="trailing" secondItem="49F-2x-4p5" secondAttribute="trailing" id="8yj-pQ-iWg"/>
+                            <constraint firstItem="fWr-cM-1UC" firstAttribute="leading" secondItem="H1k-F4-Hup" secondAttribute="leading" id="AQF-QS-wm7"/>
+                            <constraint firstItem="RYh-GT-80h" firstAttribute="top" secondItem="H1k-F4-Hup" secondAttribute="bottom" constant="8" symbolic="YES" id="VdD-P0-lCs"/>
+                            <constraint firstItem="49F-2x-4p5" firstAttribute="leading" secondItem="RYh-GT-80h" secondAttribute="leading" id="Xga-2q-E7W"/>
+                            <constraint firstItem="49F-2x-4p5" firstAttribute="trailing" secondItem="TsF-hI-1fO" secondAttribute="trailing" id="Ywf-Vq-gQ7"/>
+                            <constraint firstItem="TsF-hI-1fO" firstAttribute="top" secondItem="RYh-GT-80h" secondAttribute="bottom" constant="80" id="cAj-h3-oSW"/>
+                            <constraint firstItem="fWr-cM-1UC" firstAttribute="leading" secondItem="ZZE-e7-dVT" secondAttribute="leadingMargin" id="hHt-Fp-L0q"/>
+                            <constraint firstItem="49F-2x-4p5" firstAttribute="trailing" secondItem="RYh-GT-80h" secondAttribute="trailing" id="iBU-iA-dDM"/>
+                            <constraint firstItem="49F-2x-4p5" firstAttribute="leading" secondItem="TsF-hI-1fO" secondAttribute="leading" id="lk1-Lb-moF"/>
+                            <constraint firstItem="49F-2x-4p5" firstAttribute="top" secondItem="TsF-hI-1fO" secondAttribute="bottom" constant="80" id="o7W-dA-0tz"/>
+                            <constraint firstItem="49F-2x-4p5" firstAttribute="bottom" secondItem="0Os-qR-YG7" secondAttribute="top" id="zCH-uL-KSK"/>
+                            <constraint firstItem="TsF-hI-1fO" firstAttribute="top" secondItem="ZZE-e7-dVT" secondAttribute="top" constant="271" id="zUX-L2-61H"/>
+                            <constraint firstItem="TsF-hI-1fO" firstAttribute="top" secondItem="fWr-cM-1UC" secondAttribute="bottom" constant="8" symbolic="YES" id="zd9-JB-MZe"/>
+                        </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="528"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LYQ-nB-s9U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="756.79999999999995" y="-76.46176911544228"/>
         </scene>

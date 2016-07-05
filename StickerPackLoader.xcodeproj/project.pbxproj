@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A079F8481D21F367002358C9 /* MyTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A079F8471D21F367002358C9 /* MyTabBar.swift */; };
 		A0A792931D1987B3003D5E1B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0A792921D1987B3003D5E1B /* Assets.xcassets */; };
 		A0A7929A1D1987B3003D5E1B /* MessagesExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A0A792991D1987B3003D5E1B /* MessagesExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A0A7929F1D1987B3003D5E1B /* Messages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0A7929E1D1987B3003D5E1B /* Messages.framework */; };
@@ -47,6 +48,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A079F8471D21F367002358C9 /* MyTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTabBar.swift; sourceTree = "<group>"; };
 		A0A7928F1D1987B2003D5E1B /* StickerPackLoader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StickerPackLoader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0A792921D1987B3003D5E1B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A0A792941D1987B3003D5E1B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				A0A792B41D198A42003D5E1B /* StickerBrowserViewController.swift */,
 				A0A792A81D1987B3003D5E1B /* Info.plist */,
 				A0F2520C1D1C143200853E64 /* StickerBrowserView.swift */,
+				A079F8471D21F367002358C9 /* MyTabBar.swift */,
 			);
 			path = MessagesExtension;
 			sourceTree = "<group>";
@@ -240,6 +243,7 @@
 				A0A792A21D1987B3003D5E1B /* MessagesViewController.swift in Sources */,
 				A0A792B51D198A42003D5E1B /* StickerBrowserViewController.swift in Sources */,
 				A0F2520D1D1C143200853E64 /* StickerBrowserView.swift in Sources */,
+				A079F8481D21F367002358C9 /* MyTabBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
