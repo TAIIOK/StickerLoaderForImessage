@@ -9,6 +9,7 @@
 import UIKit
 import Messages
 
+
 class MessagesViewController: MSMessagesAppViewController , UIScrollViewDelegate , MSStickerBrowserViewDataSource   {
     
 
@@ -35,13 +36,20 @@ class MessagesViewController: MSMessagesAppViewController , UIScrollViewDelegate
         Browser.dataSource = self
         
         //setupStickerScroll()
-
-        DispatchQueue.global(attributes: .qosUserInitiated).async {
+        
+        let 😍 = "gff"
+        print(😍)
+        
+        
+        self.LoadStickerListFromJson(url : URL(string: "http://spl.tophope.ru/document.json")!)
+        
+        /*
+        DispatchQueue.global().async {
             self.LoadStickerListFromJson(url : URL(string: "https://spl.tophope.ru/document.json")!)
             // Bounce back to the main thread to update the UI
 
         }
-        
+        */
         
     }
     
@@ -93,8 +101,8 @@ class MessagesViewController: MSMessagesAppViewController , UIScrollViewDelegate
     {
         var Url : URL
         do {
-           
-            let paths = FileManager.default.urlsForDirectory(.documentDirectory, inDomains: .userDomainMask)
+            
+            let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
             
             do
             {
@@ -123,7 +131,7 @@ class MessagesViewController: MSMessagesAppViewController , UIScrollViewDelegate
     
     func removeDirectory(directory : String )
     {
-        let paths = FileManager.default.urlsForDirectory(.documentDirectory, inDomains: .userDomainMask)
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         do
         {
             let dataPath = try paths[0].appendingPathComponent("\(directory)")
@@ -140,8 +148,22 @@ class MessagesViewController: MSMessagesAppViewController , UIScrollViewDelegate
     
     func LoadStickerListFromJson(url : URL)
     {
+        
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if let data = data,
+              var  html = String(data: data, encoding: String.Encoding.utf8) {
+                print(html)
+            }
+        }
+        task.resume()
+        
+       
+        
+        print(url)
         do{
+
             let jsonData =  try Data(contentsOf: url)
+            
             do {
                 let json = try JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
                 
@@ -189,7 +211,7 @@ class MessagesViewController: MSMessagesAppViewController , UIScrollViewDelegate
         
         do {
             let data = try Data(contentsOf: url)
-            let paths = FileManager.default.urlsForDirectory(.documentDirectory, inDomains: .userDomainMask)
+            let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
             var Url : URL
             do
             {
@@ -240,7 +262,7 @@ class MessagesViewController: MSMessagesAppViewController , UIScrollViewDelegate
     func createLocalSticker(name: String) {
         let sticker: MSSticker = {
             let bundle = Bundle.main
-            guard let placeholderURL = bundle.urlForResource(name, withExtension: "png") else {
+            guard let placeholderURL = bundle.url(forResource: name, withExtension: "png")  else {
                 fatalError("Unable to find placeholder  image")
             }
             

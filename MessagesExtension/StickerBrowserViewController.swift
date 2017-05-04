@@ -55,7 +55,7 @@ class StickerBrowserViewController: MSStickerBrowserViewController {
     
     var StikerPacks = [StickerPack]()
     
-    func getDocumentsDirectory() -> NSString {
+    func getDocumentsDirectory() -> String {
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         let documentsDirectory = paths[0]
         return documentsDirectory
@@ -65,14 +65,10 @@ class StickerBrowserViewController: MSStickerBrowserViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //createLoacalSticker(name: "yaoming")
-        
-        //LoadStickerFromDocuments(name: "test.1" , directory : "test")
-        
-        //removeDirectory(directory: "test")
-        
-        LoadStickerListFromJson(url : URL(string: "https://spl.tophope.ru/document.json")!)
-      
+
+        DispatchQueue.global().async {
+        self.LoadStickerListFromJson(url : URL(string: "https://spl.tophope.ru/document.json")!)
+        }
         
     }
     
@@ -81,7 +77,8 @@ class StickerBrowserViewController: MSStickerBrowserViewController {
         var Url : URL
         do {
            
-            let paths = FileManager.default.urlsForDirectory(.documentDirectory, inDomains: .userDomainMask)
+            
+            let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
             
             do
             {
@@ -111,7 +108,9 @@ class StickerBrowserViewController: MSStickerBrowserViewController {
 
     func removeDirectory(directory : String )
     {
-        let paths = FileManager.default.urlsForDirectory(.documentDirectory, inDomains: .userDomainMask)
+        
+        
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         do
         {
             let dataPath = try paths[0].appendingPathComponent("\(directory)")
@@ -131,7 +130,7 @@ class StickerBrowserViewController: MSStickerBrowserViewController {
             do {
                 let data = try Data(contentsOf: url)
                 
-                let paths = FileManager.default.urlsForDirectory(.documentDirectory, inDomains: .userDomainMask)
+                let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
                 var Url : URL
                 do
                 {
@@ -182,7 +181,10 @@ class StickerBrowserViewController: MSStickerBrowserViewController {
     func createLocalSticker(name: String) {
         let sticker: MSSticker = {
             let bundle = Bundle.main
-            guard let placeholderURL = bundle.urlForResource(name, withExtension: "png") else {
+            
+       
+            
+            guard let placeholderURL = bundle.url(forResource: name, withExtension: "png") else {
                 fatalError("Unable to find placeholder  image")
             }
             

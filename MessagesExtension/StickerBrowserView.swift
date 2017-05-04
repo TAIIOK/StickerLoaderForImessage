@@ -23,7 +23,7 @@ class StickerBrowserView: MSStickerBrowserView {
     
     var StikerPacks = [StickerPack]()
     
-    func getDocumentsDirectory() -> NSString {
+    func getDocumentsDirectory() -> String {
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         let documentsDirectory = paths[0]
         return documentsDirectory
@@ -47,7 +47,7 @@ class StickerBrowserView: MSStickerBrowserView {
         var Url : URL
         do {
         
-            let paths = FileManager.default.urlsForDirectory(.documentDirectory, inDomains: .userDomainMask)
+            let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
             
             do
             {
@@ -77,7 +77,7 @@ class StickerBrowserView: MSStickerBrowserView {
     
     func removeDirectory(directory : String )
     {
-        let paths = FileManager.default.urlsForDirectory(.documentDirectory, inDomains: .userDomainMask)
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         do
         {
             let dataPath = try paths[0].appendingPathComponent("\(directory)")
@@ -97,7 +97,7 @@ class StickerBrowserView: MSStickerBrowserView {
         do {
             let data = try Data(contentsOf: url)
            
-            let paths = FileManager.default.urlsForDirectory(.documentDirectory, inDomains: .userDomainMask)
+            let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
             var Url : URL
             do
             {
@@ -148,7 +148,8 @@ class StickerBrowserView: MSStickerBrowserView {
     func createLocalSticker(name: String) {
         let sticker: MSSticker = {
             let bundle = Bundle.main
-            guard let placeholderURL = bundle.urlForResource(name, withExtension: "png") else {
+    
+            guard let placeholderURL = bundle.url(forResource: name, withExtension: "png") else {
                 fatalError("Unable to find placeholder  image")
             }
             
